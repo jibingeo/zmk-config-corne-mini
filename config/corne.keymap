@@ -49,10 +49,10 @@
                 bindings = <&kp LALT>;
                 layers = <0>;
             };
-           combo_lalt_sht {
+           combo_lalt_gui {
                 timeout-ms = <50>;
                 key-positions = <15 16>;
-                bindings = <&kp LS(LALT)>;
+                bindings = <&kp LG(LALT)>;
                 layers = <0>;
             };
             combo_rgui {
@@ -73,10 +73,10 @@
                 bindings = <&kp RALT>;
                 layers = <0>;
             };
-            combo_ratl_sht {
+            combo_ratl_gui {
                 timeout-ms = <50>;
                 key-positions = <19 20>;
-                bindings = <&kp RS(RALT)>;
+                bindings = <&kp RG(RALT)>;
                 layers = <0>;
             };
             combo_rnum {
