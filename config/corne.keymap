@@ -50,6 +50,20 @@
             };
         };
 
+        macros {
+          cmd_shift_c_tog: cmd_shift_c_tog {
+              compatible = "zmk,behavior-macro";
+              #binding-cells = <0>;
+              wait-ms = <10>;
+              tap-ms = <10>;
+              bindings
+                  = <&macro_press &kp LGUI &kp LSHIFT>
+                  , <&macro_tap &kp C>
+                  , <&macro_release &kp LGUI &kp LSHIFT>
+                  , <&tog_on 3>; // Guarantees Layer 1 is activated
+          };
+        };
+
        combos {
             compatible = "zmk,combos";
             combo_lgui {
@@ -126,7 +140,7 @@
    &trans  &mhp 1 TAB    &kp W  &kp E  &kp R  &kp T           &kp Y   &kp U  &kp I    &kp O    &mhp 1 BSPC &trans
    &trans  &mhp 3 ESC  &kp S  &kp D  &kp F  &kp G           &kp H   &kp J  &kp K    &kp L    &mhp 3 RET  &trans
    &trans  &kp Z      &kp X  &kp C  &kp V  &kp B           &kp N   &kp M  &kp A &kp P  &kp Q &trans
-                            &trans   &tog_on 3  &kp LSHIFT      &kp SPACE      &mo 3 &trans
+                            &trans   &cmd_shift_c_tog  &kp LSHIFT      &kp SPACE      &mo 3 &trans
                          >;
                 };
 
