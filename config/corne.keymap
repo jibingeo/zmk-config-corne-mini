@@ -38,6 +38,35 @@
             };
         };
 
+        macros {
+          macro_with_tog: macro_with_tog {
+              compatible = "zmk,behavior-macro";
+              #binding-cells = <0>;
+              wait-ms = <10>;
+              tap-ms = <10>;
+              bindings =
+                // 1. Press and hold Cmd + Shift
+                = <&macro_press &kp LGUI &kp LSHIFT>
+                // 2. Tap the C key
+                , <&macro_tap &kp C>
+                // 3. Release Cmd + Shift
+                , <&macro_release &kp LGUI &kp LSHIFT>
+                // 4. Toggle the target layer (e.g., Layer 1)
+                , <&tog 3>;
+          };
+
+          // Macro 2: Sends Escape and turns Layer 1 OFF
+          esc_tog_off: esc_tog_off {
+              compatible = "zmk,behavior-macro";
+              #binding-cells = <0>;
+              wait-ms = <10>;
+              tap-ms = <10>;
+              bindings
+                  = <&macro_tap &kp ESC>
+                  , <&tog 3>; // Toggles Layer 1 back OFF
+          };
+        };
+
        combos {
             compatible = "zmk,combos";
             combo_lgui {
