@@ -62,6 +62,15 @@
                   , <&macro_release &kp LGUI &kp LSHIFT>
                   , <&tog_on 3>; // Guarantees Layer 1 is activated
           };
+          esc_tog_off: esc_tog_off {
+              compatible = "zmk,behavior-macro";
+              #binding-cells = <0>;
+              wait-ms = <10>;
+              tap-ms = <10>;
+              bindings
+                  = <&macro_tap &kp ESC>
+                  , <&tog_off 1>; // Guarantees Layer 1 is deactivated
+          };
         };
 
        combos {
@@ -167,9 +176,9 @@
                 label = "Third";
                 	bindings = <
    &trans  &none       &none            &mmv MOVE_UP     &none                &none       &none     &none      &none      &none      &none &trans
-   &trans  &none       &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT      &none       &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none  &trans
+   &trans  &esc_tog_off       &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT      &none       &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none  &trans
    &trans  &sys_reset  &bootloader      &kp K_COPY       &kp K_PASTE          &trans      &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &none  &trans
-                       &trans           &tog_off 3            &mkp RCLK            &mkp LCLK   &none     &trans
+                       &trans           &none            &mkp RCLK            &mkp LCLK   &none     &trans
                          >;
                 };
 
