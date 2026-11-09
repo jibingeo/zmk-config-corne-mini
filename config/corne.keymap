@@ -14,7 +14,17 @@
 #define SECOND 2
 #define THIRD 3
 
+&mmv {
+    time-to-max-speed-ms = <600>;     // Time (in ms) to ramp up to full speed
+    acceleration-exponent = <2>;      // 1 = linear, 2 = exponential acceleration
+    delay-ms = <0>;                   // Small pause before movement begins (usually 0)
+};
 
+&msc {
+    time-to-max-speed-ms = <400>;     // Time (in ms) to reach max scroll speed
+    acceleration-exponent = <1>;      // 0 = completely constant scroll speed
+    delay-ms = <0>;
+};
 
 / {
 
