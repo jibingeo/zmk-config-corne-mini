@@ -60,7 +60,7 @@
                   = <&macro_press &kp LGUI &kp LSHIFT>
                   , <&macro_tap &kp C>
                   , <&macro_release &kp LGUI &kp LSHIFT>
-                  , <&to 3>; // Guarantees Layer 1 is activated
+                  , <&macro_tap &tog_on 3>; // Guarantees Layer 1 is activated
           };
           esc_tog_off: esc_tog_off {
               compatible = "zmk,behavior-macro";
@@ -69,7 +69,7 @@
               tap-ms = <10>;
               bindings
                   = <&macro_tap &kp ESC>
-                  , <&to 0>; // Guarantees Layer 1 is deactivated
+                  , <&macro_tap &tog_off 3>; // Guarantees Layer 1 is deactivated
           };
         };
 
