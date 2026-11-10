@@ -47,6 +47,14 @@
             bindings = <&mo>, <&kp>;
         };
 
+        macro_tap_hold: macro_tap_hold {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";       // Prevents accidental hold triggers while typing quickly
+            tapping-term-ms = <200>;        // Must hold for 200ms to trigger the macro
+            bindings = <&layer_macro>, <&kp>; // Hold executes macro, Tap executes raw keypress
+        };
+
         macro_layer_ht: macro_layer_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -195,7 +203,7 @@
             label = "Default";
             bindings = <
                 &trans  &mhp 1 TAB  &kp W  &kp E  &kp R  &kp T      &kp Y  &kp U  &kp I  &kp O  &mhp 1 BSPC  &trans
-                &trans  &mhp 3 ESC  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J  &kp K  &kp L  &mhp 3 RET   &trans
+                &trans  &macro_tap_hold 4 ESC  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J  &kp K  &kp L  &macro_tap_hold 4 RET   &trans
                 &trans  &kp Z       &kp X  &kp C  &kp V  &kp B      &kp N  &kp M  &kp A  &kp P  &kp Q        &trans
                     &trans            &macro_layer_ht 4 0  &kp LSHIFT            &kp SPACE  &layer_macro      &trans
             >;
@@ -234,9 +242,9 @@
         mouse_layer {
             label = "Mouse";
             bindings = <
-                &trans  &none         &kp W  &kp E  &kp R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &kp BSPC &trans
-                &trans  &esc_tog_off  &kp S  &kp D  &kp F  &none      &mmi MOVE_LEFT  &mmi MOVE_DOWN  &mmi MOVE_UP  &mmi MOVE_RIGHT  &mkp LCLK    &trans
-                &trans  &none         &kp X  &kp C  &kp V  &none      &none           &none           &none         &mkp RCLK        &mkp RCLK    &trans
+                &trans  &kp BSPC    &kp W  &kp E  &kp R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &kp BSPC     &trans
+                &trans  &mkp LCLK   &kp S  &kp D  &kp F  &none      &mmi MOVE_LEFT  &mmi MOVE_DOWN  &mmi MOVE_UP  &mmi MOVE_RIGHT  &mkp LCLK    &trans
+                &trans  &mkp RCLK   &kp X  &kp C  &kp V  &none      &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT        &mkp RCLK    &trans
                     &trans  &trans  &none       &kp SPACE   &none   &trans
             >;
         };
