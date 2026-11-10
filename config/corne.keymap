@@ -29,6 +29,13 @@
     delay-ms = <0>;
 };
 
+&mmi {
+    max-speed = <32>;
+    friction = <16>;
+    delay-ms = <0>;
+    interval-ms = <10>;
+};
+
 / {
     behaviors {
         mhp: behavior_mo_tap {
