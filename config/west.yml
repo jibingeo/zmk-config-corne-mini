@@ -4,9 +4,14 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: oleksandrmaslov
+      url-base: https://github.com/oleksandrmaslov
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
+    - name: zmk-pointing-acceleration
+      remote: oleksandrmaslov
+      revision: main
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
