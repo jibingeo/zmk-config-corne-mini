@@ -195,10 +195,10 @@
         mouse_layer {
             label = "Mouse";
             bindings = <
-                &trans  &none         &kp W  &kp E  &kp R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none  &trans
-                &trans  &esc_tog_off  &kp S  &kp D  &kp F  &none      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none  &trans
-                &trans  &none         &kp X  &kp C  &kp V  &none      &none           &mkp LCLK       &mkp MCLK     &mkp RCLK        &none  &trans
-                    &trans  &trans  &none       &none   &none   &trans
+                &trans  &none         &kp W  &kp E  &kp R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &kp BSPC &trans
+                &trans  &esc_tog_off  &kp S  &kp D  &kp F  &none      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none    &trans
+                &trans  &none         &kp X  &kp C  &kp V  &none      &none           &mkp LCLK       &mkp MCLK     &mkp RCLK        &none    &trans
+                    &trans  &trans  &none       &kp SPACE   &none   &trans
             >;
         };
     };
