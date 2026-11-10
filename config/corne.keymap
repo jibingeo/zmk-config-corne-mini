@@ -14,173 +14,192 @@
 #define THIRD 3
 
 &mmv {
-    time-to-max-speed-ms = <300>;     // Time (in ms) to ramp up to full speed
-    acceleration-exponent = <1>;      // 1 = linear, 2 = exponential acceleration
-    delay-ms = <0>;                   // Small pause before movement begins (usually 0)
+    time-to-max-speed-ms = <300>;  // Time (in ms) to ramp up to full speed
+    acceleration-exponent = <1>;   // 1 = linear, 2 = exponential acceleration
+    delay-ms = <0>;                // Small pause before movement begins (usually 0)
 };
 
 &msc {
-    time-to-max-speed-ms = <300>;     // Time (in ms) to reach max scroll speed
-    acceleration-exponent = <1>;      // 0 = completely constant scroll speed
+    time-to-max-speed-ms = <300>;  // Time (in ms) to reach max scroll speed
+    acceleration-exponent = <1>;   // 0 = completely constant scroll speed
     delay-ms = <0>;
 };
 
 / {
-
-        behaviors {
-            mhp: behavior_mo_tap {
-                compatible = "zmk,behavior-hold-tap";
-                label = "mo_tog";
-                #binding-cells = <2>;
-                flavor = "hold-preferred";
-                tapping-term-ms = <200>;
-                bindings = <&mo>, <&kp>;
-            };
-
-            tog_on: toggle_layer_on_only {
-                compatible = "zmk,behavior-toggle-layer";
-                #binding-cells = <1>;
-                toggle-mode = "on";
-            };
-
-            tog_off: toggle_layer_off_only {
-                compatible = "zmk,behavior-toggle-layer";
-                #binding-cells = <1>;
-                toggle-mode = "off";
-            };
+    behaviors {
+        mhp: behavior_mo_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "mo_tog";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>;
         };
 
-        macros {
-          cmd_shift_c_tog: cmd_shift_c_tog {
-              compatible = "zmk,behavior-macro";
-              #binding-cells = <0>;
-              wait-ms = <10>;
-              tap-ms = <10>;
-              bindings
-                  = <&macro_press &kp LGUI &kp LSHIFT>
-                  , <&macro_tap &kp C>
-                  , <&macro_release &kp LGUI &kp LSHIFT>
-                  , <&macro_tap &tog_on 3>; // Guarantees Layer 1 is activated
-          };
-          esc_tog_off: esc_tog_off {
-              compatible = "zmk,behavior-macro";
-              #binding-cells = <0>;
-              wait-ms = <10>;
-              tap-ms = <10>;
-              bindings
-                  = <&macro_tap &kp ESC>
-                  , <&macro_tap &tog_off 3>; // Guarantees Layer 1 is deactivated
-          };
+        tog_on: toggle_layer_on_only {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            toggle-mode = "on";
         };
 
-       combos {
-            compatible = "zmk,combos";
-            combo_lgui {
-                timeout-ms = <50>;
-                key-positions = <2 3>;
-                bindings = <&kp LGUI>;
-                layers = <0>;
-            };
-            combo_lctl {
-                timeout-ms = <50>;
-                key-positions = <14 15>;
-                bindings = <&kp LCTRL>;
-                layers = <0>;
-            };
-            combo_lalt {
-                timeout-ms = <50>;
-                key-positions = <26 27>;
-                bindings = <&kp LALT>;
-                layers = <0>;
-            };
-           combo_lalt_gui {
-                timeout-ms = <50>;
-                key-positions = <15 16>;
-                bindings = <&kp LG(LALT)>;
-                layers = <0>;
-            };
-            combo_rgui {
-                timeout-ms = <50>;
-                key-positions = <8 9>;
-                bindings = <&kp RGUI>;
-                layers = <0>;
-            };
-            combo_rctrl {
-                timeout-ms = <50>;
-                key-positions = <20 21>;
-                bindings = <&kp RCTRL>;
-                layers = <0>;
-            };
-            combo_ratl {
-                timeout-ms = <50>;
-                key-positions = <32 33>;
-                bindings = <&kp RALT>;
-                layers = <0>;
-            };
-            combo_ratl_gui {
-                timeout-ms = <50>;
-                key-positions = <19 20>;
-                bindings = <&kp RG(RALT)>;
-                layers = <0>;
-            };
-            combo_rnum {
-                timeout-ms = <50>;
-                key-positions = <9 10>;
-                bindings = <&mo 2>;
-                layers = <0>;
-            };
-            combo_lnum {
-                timeout-ms = <50>;
-                key-positions = <1 2>;
-                bindings = <&mo 2>;
-                slow-release;
-                layers = <0>;
-            };
+        tog_off: toggle_layer_off_only {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            toggle-mode = "off";
+        };
+    };
+
+    macros {
+        cmd_shift_c_tog: cmd_shift_c_tog {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_press &kp LGUI &kp LSHIFT>
+                , <&macro_tap &kp C>
+                , <&macro_release &kp LGUI &kp LSHIFT>
+                , <&macro_tap &tog_on 4>;   // Guarantees layer 4 is activated
         };
 
-        keymap {
-                compatible = "zmk,keymap";
-		            label = "Zerosprey42";
-
-                default_layer {
-                label = "Default";
-                	bindings = <
-
-   &trans  &mhp 1 TAB    &kp W  &kp E  &kp R  &kp T           &kp Y   &kp U  &kp I    &kp O    &mhp 1 BSPC &trans
-   &trans  &mhp 3 ESC  &kp S  &kp D  &kp F  &kp G           &kp H   &kp J  &kp K    &kp L    &mhp 3 RET  &trans
-   &trans  &kp Z      &kp X  &kp C  &kp V  &kp B           &kp N   &kp M  &kp A &kp P  &kp Q &trans
-                            &trans   &cmd_shift_c_tog  &kp LSHIFT      &kp SPACE      &mo 3 &trans
-                         >;
-                };
-
-                first_later {
-                label = "First";
-                	bindings = <
-   &trans  &kp BSPC   &mhp 2 AT  &kp HASH  &kp DLLR   &kp PRCNT  &kp CARET  &kp AMPS  &kp STAR   &mhp 2 EXCL  &kp BSPC &trans
-   &trans  &kp LBRC   &kp LBKT   &kp LPAR  &kp LT     &kp COLON  &kp MINUS  &kp EQUAL &kp SQT    &kp DQT      &kp FSLH &trans
-   &trans  &kp GRAVE  &kp TILDE  &kp BSLH  &kp QMARK  &kp SEMI   &kp UNDER  &kp PLUS  &kp COMMA  &kp DOT      &kp PIPE &trans
-                            &trans   &none  &none  &none  &none  &trans
-                         >;
-                };
-                second_later {
-                label = "Second";
-                	bindings = <
-   &trans  &trans    &none     &none     &none   &none   &none   &kp N7  &kp N8  &kp N9  &trans &trans
-   &trans  &kp RBRC  &kp RBKT  &kp RPAR  &kp GT  &none   &none   &kp N4  &kp N5  &kp N6  &kp N0 &trans
-   &trans  &none     &none     &none     &none   &none   &none   &kp N1  &kp N2  &kp N3  &kp DOT &trans
-                           &trans   &none  &none  &none  &none &trans
-                         >;
-                };
-
-                third_later {
-                label = "Third";
-                	bindings = <
-   &trans  &none       &none            &mmv MOVE_UP     &none                &none       &none     &none      &none      &none      &none &trans
-   &trans  &esc_tog_off       &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT      &none       &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none  &trans
-   &trans  &sys_reset  &bootloader      &kp K_COPY       &kp K_PASTE          &trans      &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &none  &trans
-                       &trans           &trans            &mkp RCLK            &mkp LCLK   &none     &trans
-                         >;
-                };
-
+        esc_tog_off: esc_tog_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_tap &kp ESC>
+                , <&macro_tap &tog_off 4>;  // Guarantees layer 4 is deactivated
         };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_lgui {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            bindings = <&kp LGUI>;
+            layers = <0>;
+        };
+
+        combo_lctl {
+            timeout-ms = <50>;
+            key-positions = <14 15>;
+            bindings = <&kp LCTRL>;
+            layers = <0>;
+        };
+
+        combo_lalt {
+            timeout-ms = <50>;
+            key-positions = <26 27>;
+            bindings = <&kp LALT>;
+            layers = <0>;
+        };
+
+        combo_lalt_gui {
+            timeout-ms = <50>;
+            key-positions = <15 16>;
+            bindings = <&kp LG(LALT)>;
+            layers = <0>;
+        };
+
+        combo_rgui {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&kp RGUI>;
+            layers = <0>;
+        };
+
+        combo_rctrl {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            bindings = <&kp RCTRL>;
+            layers = <0>;
+        };
+
+        combo_ratl {
+            timeout-ms = <50>;
+            key-positions = <32 33>;
+            bindings = <&kp RALT>;
+            layers = <0>;
+        };
+
+        combo_ratl_gui {
+            timeout-ms = <50>;
+            key-positions = <19 20>;
+            bindings = <&kp RG(RALT)>;
+            layers = <0>;
+        };
+
+        combo_rnum {
+            timeout-ms = <50>;
+            key-positions = <9 10>;
+            bindings = <&mo 2>;
+            layers = <0>;
+        };
+
+        combo_lnum {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&mo 2>;
+            slow-release;
+            layers = <0>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        label = "Zerosprey42";
+
+        default_layer {
+            label = "Default";
+            bindings = <
+                &trans  &mhp 1 TAB  &kp W  &kp E  &kp R  &kp T      &kp Y  &kp U  &kp I  &kp O  &mhp 1 BSPC  &trans
+                &trans  &mhp 3 ESC  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J  &kp K  &kp L  &mhp 3 RET   &trans
+                &trans  &kp Z       &kp X  &kp C  &kp V  &kp B      &kp N  &kp M  &kp A  &kp P  &kp Q        &trans
+                    &trans            &cmd_shift_c_tog  &kp LSHIFT            &kp SPACE  &mo 3      &trans
+            >;
+        };
+
+        first_later {
+            label = "First";
+            bindings = <
+                &trans  &kp BSPC   &mhp 2 AT  &kp HASH  &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp STAR   &mhp 2 EXCL  &kp BSPC  &trans
+                &trans  &kp LBRC   &kp LBKT   &kp LPAR  &kp LT     &kp COLON      &kp MINUS  &kp EQUAL  &kp SQT    &kp DQT      &kp FSLH  &trans
+                &trans  &kp GRAVE  &kp TILDE  &kp BSLH  &kp QMARK  &kp SEMI       &kp UNDER  &kp PLUS   &kp COMMA  &kp DOT      &kp PIPE  &trans
+                    &trans  &none   &none       &none   &none   &trans
+            >;
+        };
+
+        second_later {
+            label = "Second";
+            bindings = <
+                &trans  &trans    &none     &none     &none   &none      &none  &kp N7  &kp N8  &kp N9  &trans   &trans
+                &trans  &kp RBRC  &kp RBKT  &kp RPAR  &kp GT  &none      &none  &kp N4  &kp N5  &kp N6  &kp N0   &trans
+                &trans  &none     &none     &none     &none   &none      &none  &kp N1  &kp N2  &kp N3  &kp DOT  &trans
+                    &trans  &none   &none       &none   &none   &trans
+            >;
+        };
+
+        third_later {
+            label = "Third";
+            bindings = <
+                &trans  &none         &none           &mmv MOVE_UP    &none            &none       &none     &none      &none      &none      &none  &trans
+                &trans  &esc_tog_off  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none       &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none  &trans
+                &trans  &sys_reset    &bootloader     &kp K_COPY      &kp K_PASTE      &trans      &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &none  &trans
+                    &trans     &trans     &mkp RCLK      &mkp LCLK  &none      &trans
+            >;
+        };
+
+        mouse_layer {
+            label = "Mouse";
+            bindings = <
+                &trans  &none         &kp W  &kp E  &kp R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none  &trans
+                &trans  &esc_tog_off  &kp S  &kp D  &kp F  &none      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none  &trans
+                &trans  &none         &kp X  &kp C  &kp V  &none      &none           &mkp LCLK       &mkp MCLK     &mkp RCLK        &none  &trans
+                    &trans  &trans  &none       &none   &none   &trans
+            >;
+        };
+    };
 };
