@@ -203,7 +203,7 @@
             label = "Default";
             bindings = <
                 &trans  &mhp 1 TAB  &kp W  &kp E  &kp R  &kp T      &kp Y  &kp U  &kp I  &kp O  &mhp 1 BSPC  &trans
-                &trans  &macro_tap_hold 4 ESC  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J  &kp K  &kp L  &macro_tap_hold 4 RET   &trans
+                &trans  &mhp 4 ESC  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J  &kp K  &kp L  &mhp 4 RET   &trans
                 &trans  &kp Z       &kp X  &kp C  &kp V  &kp B      &kp N  &kp M  &kp A  &kp P  &kp Q        &trans
                     &trans            &macro_layer_ht 4 0  &kp LSHIFT            &kp SPACE  &layer_macro      &trans
             >;
