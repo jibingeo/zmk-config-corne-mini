@@ -254,10 +254,10 @@
         mouse_layer {
             label = "Mouse";
             bindings = <
-                &trans  &kp BSPC    &cmd_shift_c_wrap W  &cmd_shift_c_wrap E  &cmd_shift_c_wrap R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &kp BSPC     &trans
-                &trans  &mkp LCLK   &cmd_shift_c_wrap S  &cmd_shift_c_wrap D  &cmd_shift_c_wrap F  &none      &mmi MOVE_LEFT  &mmi MOVE_DOWN  &mmi MOVE_UP  &mmi MOVE_RIGHT  &mkp LCLK    &trans
-                &trans  &mkp RCLK   &cmd_shift_c_wrap X  &cmd_shift_c_wrap C  &cmd_shift_c_wrap V  &none      &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT        &mkp RCLK    &trans
-                    &trans  &trans  &none       &kp SPACE   &none   &trans
+                &trans  &kp BSPC    &kp W          &kp E  &kp R  &none      &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &kp BSPC     &trans
+                &trans  &mkp LCLK   &kp S          &kp D  &kp F  &none      &mmi MOVE_LEFT  &mmi MOVE_DOWN  &mmi MOVE_UP  &mmi MOVE_RIGHT  &mkp LCLK    &trans
+                &trans  &mkp RCLK   &kp X          &kp C  &kp V  &none      &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT        &mkp RCLK    &trans
+                    &trans  &trans  &kp LG(LS(C))  &kp SPACE   &none   &trans
             >;
         };
     };
